@@ -44,6 +44,7 @@ ENTRY(clear_page)
 	__endla	a2, a7, 32
 
 	retw
+ENDPROC(clear_page)
 
 /*
  * copy_page and copy_user_page are the same for non-cache-aliased configs.
@@ -83,6 +84,7 @@ ENTRY(copy_page)
 	__endl  a2, a4
 
 	retw
+ENDPROC(copy_page)
 
 #ifdef CONFIG_MMU
 /*
@@ -163,6 +165,7 @@ ENTRY(clear_user_page)
 	dsync
 
 	retw
+ENDPROC(clear_user_page)
 
 /*
  * copy_page_user (void *to, void *from, unsigned long vaddr, struct page *page)
@@ -171,7 +174,7 @@ ENTRY(clear_user_page)
 
 ENTRY(copy_user_page)
 
-	entry	a1, 32 
+	entry	a1, 32
 
 	/* Mark page dirty and determine alias for destination. */
 
@@ -261,7 +264,7 @@ ENTRY(copy_user_page)
 	dsync
 
 	retw
-
+ENDPROC(copy_user_page)
 #endif
 
 #if (DCACHE_WAY_SIZE > PAGE_SIZE)
@@ -286,7 +289,7 @@ ENTRY(__flush_invalidate_dcache_page_alias)
 	dsync
 
 	retw
-
+ENDPROC(__flush_invalidate_dcache_page_alias)
 #endif
 
 ENTRY(__tlbtemp_mapping_itlb)
@@ -306,7 +309,7 @@ ENTRY(__invalidate_icache_page_alias)
 	iitlb	a4
 	isync
 	retw
-
+ENDPROC(__invalidate_icache_page_alias)
 #endif
 
 /* End of special treatment in tlb miss exception */
@@ -325,6 +328,7 @@ ENTRY(__invalidate_icache_page)
 	isync
 
 	retw
+ENDPROC(__invalidate_icache_page)
 
 /*
  * void __invalidate_dcache_page(ulong start)
@@ -337,6 +341,7 @@ ENTRY(__invalidate_dcache_page)
 	dsync
 
 	retw
+ENDPROC(__invalidate_dcache_page)
 
 /*
  * void __flush_invalidate_dcache_page(ulong start)
@@ -349,6 +354,7 @@ ENTRY(__flush_invalidate_dcache_page)
 
 	dsync
 	retw
+ENDPROC(__flush_invalidate_dcache_page)
 
 /*
  * void __flush_dcache_page(ulong start)
@@ -361,6 +367,7 @@ ENTRY(__flush_dcache_page)
 
 	dsync
 	retw
+ENDPROC(__flush_dcache_page)
 
 /*
  * void __invalidate_icache_range(ulong start, ulong size)
@@ -373,6 +380,7 @@ ENTRY(__invalidate_icache_range)
 	isync
 
 	retw
+ENDPROC(__invalidate_icache_range)
 
 /*
  * void __flush_invalidate_dcache_range(ulong start, ulong size)
@@ -385,6 +393,7 @@ ENTRY(__flush_invalidate_dcache_range)
 	dsync
 
 	retw
+ENDPROC(__flush_invalidate_dcache_range)
 
 /*
  * void _flush_dcache_range(ulong start, ulong size)
@@ -397,6 +406,7 @@ ENTRY(__flush_dcache_range)
 	dsync
 
 	retw
+ENDPROC(__flush_dcache_range)
 
 /*
  * void _invalidate_dcache_range(ulong start, ulong size)
@@ -408,6 +418,7 @@ ENTRY(__invalidate_dcache_range)
 	___invalidate_dcache_range a2 a3 a4
 
 	retw
+ENDPROC(__invalidate_dcache_range)
 
 /*
  * void _invalidate_icache_all(void)
@@ -420,6 +431,7 @@ ENTRY(__invalidate_icache_all)
 	isync
 
 	retw
+ENDPROC(__invalidate_icache_all)
 
 /*
  * void _flush_invalidate_dcache_all(void)
@@ -432,6 +444,7 @@ ENTRY(__flush_invalidate_dcache_all)
 	dsync
 
 	retw
+ENDPROC(__flush_invalidate_dcache_all)
 
 /*
  * void _invalidate_dcache_all(void)
@@ -444,4 +457,4 @@ ENTRY(__invalidate_dcache_all)
 	dsync
 
 	retw
-
+ENDPROC(__invalidate_dcache_all)
